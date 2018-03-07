@@ -1,5 +1,5 @@
 FROM ubuntu:14.04
 MAINTAINER lukmir
-RUN mkdir new_folder
-RUN touch new_folder/new_file
-RUN echo 'new container' > /new_folder/new_file
+RUN apt-get update && apt-get install -y apache2 && apt-get clean
+ENV APACHE_LOG_DIR /var/log/apache2
+ENTRYPOINT ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
